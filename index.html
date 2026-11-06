@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portal de Encomiendas Lapticon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <section id="loginView" class="view active">
+        <div class="auth-card">
+          <div class="brand-mark" aria-label="Logo de Lapticon">
+            <span>L</span>
+          </div>
+          <div class="brand-text">
+            <p class="eyebrow">Portal corporativo</p>
+            <h1>Encomiendas Lapticon</h1>
+          </div>
+
+          <form id="loginForm" class="auth-form" novalidate>
+            <div class="input-group">
+              <label for="email">Correo electrónico</label>
+              <input id="email" name="email" type="email" autocomplete="email" placeholder="usuario@correo.com" required />
+            </div>
+
+            <div class="input-group">
+              <label for="password">Contraseña</label>
+              <input id="password" name="password" type="password" autocomplete="current-password" placeholder="••••••••" required />
+            </div>
+
+            <button id="loginButton" type="submit" class="primary-button full-width">
+              Iniciar sesión
+            </button>
+          </form>
+
+          <div id="loginMessage" class="message" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section id="portalView" class="view hidden" aria-live="polite">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Sistema</p>
+            <h2>Portal de Encomiendas</h2>
+          </div>
+          <button id="logoutButton" type="button" class="secondary-button">Cerrar sesión</button>
+        </header>
+
+        <main class="portal-grid">
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Nuevo registro</p>
+                <h3>Registrar encomienda</h3>
+              </div>
+            </div>
+
+            <form id="encomiendaForm" class="encomienda-form" novalidate>
+              <div class="field-row">
+                <div class="input-group">
+                  <label for="origenSelect">Ciudad de origen</label>
+                  <select id="origenSelect" name="origen" required>
+                    <option value="">Selecciona una ciudad</option>
+                  </select>
+                </div>
+
+                <div class="input-group">
+                  <label for="destinoSelect">Ciudad de destino</label>
+                  <select id="destinoSelect" name="destino" required>
+                    <option value="">Selecciona una ciudad</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field-row two-columns">
+                <div class="input-group">
+                  <label for="valorInput">Valor</label>
+                  <input id="valorInput" name="valor" type="number" min="0" step="0.01" placeholder="Ej: 150000" required />
+                </div>
+
+                <div class="input-group">
+                  <label for="monedaSelect">Moneda</label>
+                  <select id="monedaSelect" name="moneda" required>
+                    <option value="">Selecciona</option>
+                    <option value="USD">USD</option>
+                    <option value="COP">COP</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="input-group">
+                <label for="observacionesInput">Observaciones</label>
+                <textarea id="observacionesInput" name="observaciones" rows="4" placeholder="Describe el contenido o instrucciones adicionales" required></textarea>
+              </div>
+
+              <button id="registerButton" type="submit" class="primary-button full-width">
+                Registrar encomienda
+              </button>
+            </form>
+
+            <div id="encomiendaMessage" class="message" aria-live="polite"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-header table-header">
+              <div>
+                <p class="eyebrow">Historial</p>
+                <h3>Mis encomiendas</h3>
+              </div>
+              <button id="refreshEncomiendasButton" type="button" class="secondary-button small-button">
+                Actualizar
+              </button>
+            </div>
+
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Origen</th>
+                    <th>Destino</th>
+                    <th>Estado</th>
+                    <th>Valor</th>
+                    <th>Moneda</th>
+                    <th>Acción</th>
+                  </tr>
+                </thead>
+                <tbody id="encomiendasTableBody">
+                  <tr>
+                    <td colspan="6" class="table-empty">Cargando encomiendas...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div id="encomiendasMessage" class="message" aria-live="polite"></div>
+          </section>
+        </main>
+      </section>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
